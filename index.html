@@ -40,7 +40,6 @@
     overflow: hidden;
   }
 
-  /* ── Header ── */
   header {
     display: flex;
     align-items: center;
@@ -55,7 +54,6 @@
     font-weight: 800;
     font-size: 1.2rem;
     letter-spacing: -0.02em;
-    color: var(--text);
   }
   .logo span { color: var(--accent); }
   .model-badge {
@@ -69,16 +67,11 @@
     letter-spacing: 0.05em;
   }
 
-  /* ── Main Layout ── */
-  .main {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
+  .main { display: flex; flex: 1; overflow: hidden; }
 
   /* ── Left Panel ── */
   .panel-left {
-    width: 340px;
+    width: 320px;
     flex-shrink: 0;
     border-right: 1px solid var(--border);
     display: flex;
@@ -86,7 +79,6 @@
     background: var(--surface);
     overflow-y: auto;
   }
-
   .panel-section {
     padding: 20px;
     border-bottom: 1px solid var(--border);
@@ -100,34 +92,7 @@
     margin-bottom: 12px;
   }
 
-  /* API Key */
-  .api-input {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    padding: 9px 12px;
-    border-radius: 6px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .api-input:focus { border-color: var(--accent); }
-  .api-hint {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    margin-top: 6px;
-  }
-  .api-hint a { color: var(--accent); text-decoration: none; }
-
-  /* Tabs */
-  .tabs {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 14px;
-  }
+  .tabs { display: flex; gap: 4px; margin-bottom: 14px; }
   .tab {
     flex: 1;
     padding: 7px;
@@ -140,16 +105,10 @@
     cursor: pointer;
     border-radius: 5px;
     transition: all 0.2s;
-    letter-spacing: 0.02em;
   }
-  .tab.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #0d0d0d;
-  }
+  .tab.active { background: var(--accent); border-color: var(--accent); color: #0d0d0d; }
   .tab:hover:not(.active) { border-color: var(--border-bright); color: var(--text); }
 
-  /* Upload Zone */
   .upload-zone {
     border: 2px dashed var(--border);
     border-radius: 8px;
@@ -165,20 +124,9 @@
   }
   .upload-zone input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
   .upload-icon { font-size: 2rem; margin-bottom: 8px; }
-  .upload-text {
-    font-family: var(--font-display);
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-dim);
-  }
-  .upload-sub {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    margin-top: 4px;
-  }
+  .upload-text { font-family: var(--font-display); font-size: 0.8rem; font-weight: 600; color: var(--text-dim); }
+  .upload-sub  { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); margin-top: 4px; }
 
-  /* Text Area */
   .text-input-area {
     width: 100%;
     background: var(--surface2);
@@ -196,7 +144,6 @@
   }
   .text-input-area:focus { border-color: var(--accent); }
 
-  /* Status */
   .doc-status {
     display: none;
     align-items: center;
@@ -209,29 +156,16 @@
   }
   .doc-status.visible { display: flex; }
   .status-dot {
-    width: 7px;
-    height: 7px;
+    width: 7px; height: 7px;
     border-radius: 50%;
     background: var(--success);
     flex-shrink: 0;
     animation: pulse 2s infinite;
   }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-  .status-text {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--success);
-  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .status-text { font-family: var(--font-mono); font-size: 0.65rem; color: var(--success); }
 
-  /* Stats */
-  .doc-stats {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-  }
+  .doc-stats { display: flex; gap: 10px; margin-top: 10px; }
   .stat {
     flex: 1;
     background: var(--surface2);
@@ -240,21 +174,9 @@
     padding: 8px 10px;
     text-align: center;
   }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--accent);
-  }
-  .stat-label {
-    font-family: var(--font-mono);
-    font-size: 0.55rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
+  .stat-num  { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--accent); }
+  .stat-label{ font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
 
-  /* Load btn */
   .load-btn {
     width: 100%;
     padding: 10px;
@@ -272,15 +194,9 @@
   }
   .load-btn:hover { background: #f08d40; }
   .load-btn:active { transform: scale(0.98); }
-  .load-btn:disabled { background: var(--border); color: var(--text-muted); cursor: not-allowed; }
 
-  /* ── Right Panel — Chat ── */
-  .panel-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+  /* ── Right Panel ── */
+  .panel-right { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
   .chat-messages {
     flex: 1;
@@ -293,7 +209,6 @@
     scrollbar-color: var(--border) transparent;
   }
 
-  /* Empty state */
   .empty-state {
     flex: 1;
     display: flex;
@@ -304,47 +219,22 @@
     gap: 12px;
     padding: 40px;
   }
-  .empty-icon { font-size: 3rem; opacity: 0.3; }
-  .empty-title {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-dim);
-  }
-  .empty-sub {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    line-height: 1.8;
-    max-width: 360px;
-  }
+  .empty-icon  { font-size: 3rem; opacity: 0.3; }
+  .empty-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-dim); }
+  .empty-sub   { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); line-height: 1.8; max-width: 360px; }
 
-  /* Messages */
-  .msg {
-    display: flex;
-    gap: 14px;
-    animation: fadeUp 0.3s ease;
-    max-width: 820px;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .msg { display: flex; gap: 14px; animation: fadeUp 0.3s ease; max-width: 820px; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
   .msg.user { flex-direction: row-reverse; align-self: flex-end; }
   .msg-avatar {
-    width: 32px;
-    height: 32px;
+    width: 32px; height: 32px;
     border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    flex-shrink: 0;
-    font-family: var(--font-display);
-    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; flex-shrink: 0;
+    font-family: var(--font-display); font-weight: 700;
   }
   .msg.user .msg-avatar { background: var(--accent); color: #0d0d0d; }
-  .msg.ai .msg-avatar { background: var(--surface2); color: var(--accent); border: 1px solid var(--border); }
+  .msg.ai   .msg-avatar { background: var(--surface2); color: var(--accent); border: 1px solid var(--border); }
   .msg-bubble {
     padding: 14px 18px;
     border-radius: 10px;
@@ -352,38 +242,14 @@
     line-height: 1.8;
     max-width: 680px;
   }
-  .msg.user .msg-bubble {
-    background: var(--user-bubble);
-    border: 1px solid var(--border);
-    border-top-right-radius: 2px;
-  }
-  .msg.ai .msg-bubble {
-    background: var(--ai-bubble);
-    border: 1px solid var(--border);
-    border-top-left-radius: 2px;
-  }
+  .msg.user .msg-bubble { background: var(--user-bubble); border: 1px solid var(--border); border-top-right-radius: 2px; }
+  .msg.ai   .msg-bubble { background: var(--ai-bubble);   border: 1px solid var(--border); border-top-left-radius:  2px; }
 
-  /* Typing indicator */
-  .typing-indicator {
-    display: flex;
-    gap: 5px;
-    padding: 4px 0;
-    align-items: center;
-  }
-  .dot {
-    width: 7px; height: 7px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: bounce 1.2s infinite;
-  }
-  .dot:nth-child(2) { animation-delay: 0.2s; }
-  .dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes bounce {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
-    30% { transform: translateY(-6px); opacity: 1; }
-  }
+  .typing-indicator { display: flex; gap: 5px; padding: 4px 0; align-items: center; }
+  .dot { width:7px; height:7px; background:var(--accent); border-radius:50%; animation:bounce 1.2s infinite; }
+  .dot:nth-child(2){animation-delay:.2s} .dot:nth-child(3){animation-delay:.4s}
+  @keyframes bounce { 0%,60%,100%{transform:translateY(0);opacity:.5} 30%{transform:translateY(-6px);opacity:1} }
 
-  /* Chat Input */
   .chat-input-area {
     border-top: 1px solid var(--border);
     padding: 16px 24px;
@@ -392,12 +258,8 @@
     gap: 10px;
     align-items: flex-end;
   }
-  .chat-input-wrap {
-    flex: 1;
-    position: relative;
-  }
   .chat-input {
-    width: 100%;
+    flex: 1;
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--text);
@@ -413,16 +275,12 @@
   }
   .chat-input:focus { border-color: var(--accent); }
   .send-btn {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     background: var(--accent);
-    border: none;
-    border-radius: 8px;
+    border: none; border-radius: 8px;
     color: #0d0d0d;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     font-size: 1.1rem;
     transition: background 0.2s, transform 0.1s;
     flex-shrink: 0;
@@ -431,27 +289,19 @@
   .send-btn:active { transform: scale(0.93); }
   .send-btn:disabled { background: var(--border); cursor: not-allowed; }
 
-  /* Error toast */
   .toast {
     position: fixed;
-    bottom: 80px;
-    left: 50%;
+    bottom: 80px; left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: #3d1515;
-    border: 1px solid #7a2020;
+    background: #3d1515; border: 1px solid #7a2020;
     color: #f8a0a0;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    padding: 10px 18px;
-    border-radius: 6px;
-    opacity: 0;
-    transition: all 0.3s;
-    pointer-events: none;
-    z-index: 100;
+    font-family: var(--font-mono); font-size: 0.72rem;
+    padding: 10px 18px; border-radius: 6px;
+    opacity: 0; transition: all 0.3s;
+    pointer-events: none; z-index: 100;
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* Scrollbar */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
@@ -468,15 +318,6 @@
 
   <!-- LEFT PANEL -->
   <div class="panel-left">
-
-    <!-- API Key -->
-    <div class="panel-section">
-      <div class="section-label">Groq API Key</div>
-      <input type="password" class="api-input" id="apiKey" placeholder="gsk_···············">
-      <div class="api-hint">Get one free at <a href="https://console.groq.com" target="_blank">console.groq.com</a></div>
-    </div>
-
-    <!-- Source Tabs -->
     <div class="panel-section">
       <div class="section-label">Document Source</div>
       <div class="tabs">
@@ -502,12 +343,10 @@
         <button class="load-btn" onclick="loadText()">Load Text →</button>
       </div>
 
-      <!-- Status -->
       <div class="doc-status" id="docStatus">
         <div class="status-dot"></div>
         <div class="status-text" id="statusText">Document loaded</div>
       </div>
-
       <div class="doc-stats" id="docStats" style="display:none">
         <div class="stat">
           <div class="stat-num" id="wordCount">0</div>
@@ -520,95 +359,72 @@
       </div>
     </div>
 
-    <!-- Clear -->
     <div class="panel-section">
       <div class="section-label">Session</div>
-      <button class="load-btn" onclick="clearAll()" style="background:var(--surface2);color:var(--text-dim);border:1px solid var(--border);">
+      <button class="load-btn" onclick="clearAll()"
+        style="background:var(--surface2);color:var(--text-dim);border:1px solid var(--border);">
         Clear Everything
       </button>
     </div>
-
-  </div><!-- /panel-left -->
+  </div>
 
   <!-- RIGHT PANEL -->
   <div class="panel-right">
-    <div class="chat-messages" id="chatMessages">
-      <div class="empty-state" id="emptyState">
-        <div class="empty-icon">🔍</div>
-        <div class="empty-title">Load a document to begin</div>
-        <div class="empty-sub">
-          Upload a PDF or paste text on the left,<br>
-          then ask anything about its contents.<br><br>
-          <span style="color:var(--accent)">Powered by Llama 4 Scout via Groq</span>
-        </div>
-      </div>
-    </div>
-
+    <div class="chat-messages" id="chatMessages"></div>
     <div class="chat-input-area">
-      <div class="chat-input-wrap">
-        <textarea class="chat-input" id="chatInput"
-          rows="1"
-          placeholder="Ask a question about your document…"
-          onkeydown="handleKey(event)"
-          oninput="autoResize(this)"></textarea>
-      </div>
+      <textarea class="chat-input" id="chatInput" rows="1"
+        placeholder="Ask a question about your document…"
+        onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
       <button class="send-btn" id="sendBtn" onclick="sendMessage()">➤</button>
     </div>
   </div>
 
-</div><!-- /main -->
+</div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-  // ─── State ───────────────────────────────────────────
-  let documentText = '';
-  let chatHistory  = [];
-  let currentTab   = 'pdf';
-  let isLoading    = false;
-
-  // PDF.js worker
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  // ─── Tab Switch ──────────────────────────────────────
+  let documentText = '';
+  let chatHistory  = [];
+  let isLoading    = false;
+
+  // ─── Tabs ─────────────────────────────────────────────
   function switchTab(tab) {
-    currentTab = tab;
     document.getElementById('tab-pdf').style.display  = tab === 'pdf'  ? 'block' : 'none';
     document.getElementById('tab-text').style.display = tab === 'text' ? 'block' : 'none';
     document.querySelectorAll('.tab').forEach((el, i) => {
-      el.classList.toggle('active', (i === 0 && tab === 'pdf') || (i === 1 && tab === 'text'));
+      el.classList.toggle('active', (i===0 && tab==='pdf') || (i===1 && tab==='text'));
     });
   }
 
-  // ─── PDF Handling ────────────────────────────────────
+  // ─── PDF ──────────────────────────────────────────────
   function handleDrag(e)     { e.preventDefault(); document.getElementById('uploadZone').classList.add('drag-over'); }
   function handleDragLeave() { document.getElementById('uploadZone').classList.remove('drag-over'); }
   function handleDrop(e) {
     e.preventDefault();
     document.getElementById('uploadZone').classList.remove('drag-over');
-    const file = e.dataTransfer.files[0];
-    if (file && file.type === 'application/pdf') processPDF(file);
+    const f = e.dataTransfer.files[0];
+    if (f?.type === 'application/pdf') processPDF(f);
     else showToast('Please drop a valid PDF file.');
   }
-  function handleFile(e) {
-    const file = e.target.files[0];
-    if (file) processPDF(file);
-  }
+  function handleFile(e) { if (e.target.files[0]) processPDF(e.target.files[0]); }
 
   async function processPDF(file) {
     const zone = document.getElementById('uploadZone');
     zone.querySelector('.upload-text').textContent = '⏳ Extracting text…';
     try {
-      const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-      let fullText = '';
+      const buf = await file.arrayBuffer();
+      const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+      let text = '';
       for (let i = 1; i <= pdf.numPages; i++) {
-        const page    = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        fullText += content.items.map(s => s.str).join(' ') + '\n\n';
+        const page = await pdf.getPage(i);
+        const c    = await page.getTextContent();
+        text += c.items.map(s => s.str).join(' ') + '\n\n';
       }
-      documentText = fullText.trim();
+      documentText = text.trim();
       setDocumentLoaded(`${file.name} · ${pdf.numPages} pages`);
       zone.querySelector('.upload-text').textContent = `✓ ${file.name}`;
       chatHistory = [];
@@ -619,7 +435,7 @@
     }
   }
 
-  // ─── Text Handling ───────────────────────────────────
+  // ─── Text ─────────────────────────────────────────────
   function loadText() {
     const val = document.getElementById('textInput').value.trim();
     if (!val) { showToast('Please paste some text first.'); return; }
@@ -629,7 +445,6 @@
     renderChat();
   }
 
-  // ─── Status Display ──────────────────────────────────
   function setDocumentLoaded(label) {
     document.getElementById('docStatus').classList.add('visible');
     document.getElementById('statusText').textContent = label;
@@ -639,20 +454,13 @@
   }
 
   // ─── Chat ─────────────────────────────────────────────
-  function handleKey(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
-  }
-  function autoResize(el) {
-    el.style.height = 'auto';
-    el.style.height = Math.min(el.scrollHeight, 140) + 'px';
-  }
+  function handleKey(e) { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
+  function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,140)+'px'; }
 
   async function sendMessage() {
     if (isLoading) return;
-    const key = document.getElementById('apiKey').value.trim();
-    if (!key) { showToast('Please enter your Groq API key.'); return; }
     if (!documentText) { showToast('Please load a document first.'); return; }
-    const input = document.getElementById('chatInput');
+    const input    = document.getElementById('chatInput');
     const question = input.value.trim();
     if (!question) return;
 
@@ -660,7 +468,6 @@
     input.style.height = 'auto';
     isLoading = true;
     document.getElementById('sendBtn').disabled = true;
-    document.getElementById('emptyState')?.remove();
 
     chatHistory.push({ role: 'user', content: question });
     renderChat();
@@ -669,16 +476,11 @@
     try {
       const systemPrompt = `You are a precise document assistant. Answer questions strictly based on the provided document content. If the answer is not found in the document, say so clearly. Be concise and accurate.\n\n--- DOCUMENT CONTENT ---\n${documentText.slice(0, 28000)}\n--- END DOCUMENT ---`;
 
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      // ✅ Calls our own Vercel serverless function — API key never exposed
+      const res = await fetch('/api/chat', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${key}`
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'meta-llama/llama-4-scout-17b-16e-instruct',
-          max_tokens: 1024,
-          temperature: 0.3,
           messages: [
             { role: 'system', content: systemPrompt },
             ...chatHistory.slice(-8)
@@ -688,12 +490,9 @@
 
       removeTypingIndicator();
 
-      if (!response.ok) {
-        const err = await response.json();
-        throw new Error(err.error?.message || response.statusText);
-      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Server error');
 
-      const data = await response.json();
       const reply = data.choices[0].message.content;
       chatHistory.push({ role: 'assistant', content: reply });
       renderChat();
@@ -711,60 +510,35 @@
   function renderChat() {
     const container = document.getElementById('chatMessages');
     container.innerHTML = '';
-    if (chatHistory.length === 0) {
-      if (documentText) {
-        container.innerHTML = `<div class="empty-state">
-          <div class="empty-icon">💬</div>
-          <div class="empty-title">Document ready</div>
-          <div class="empty-sub">Ask your first question below.</div>
-        </div>`;
-      } else {
-        container.innerHTML = `<div class="empty-state" id="emptyState">
-          <div class="empty-icon">🔍</div>
-          <div class="empty-title">Load a document to begin</div>
-          <div class="empty-sub">Upload a PDF or paste text on the left,<br>then ask anything about its contents.<br><br>
-          <span style="color:var(--accent)">Powered by Llama 4 Scout via Groq</span></div>
-        </div>`;
-      }
+    if (!chatHistory.length) {
+      container.innerHTML = documentText
+        ? `<div class="empty-state"><div class="empty-icon">💬</div><div class="empty-title">Document ready</div><div class="empty-sub">Ask your first question below.</div></div>`
+        : `<div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">Load a document to begin</div><div class="empty-sub">Upload a PDF or paste text on the left,<br>then ask anything about its contents.<br><br><span style="color:var(--accent)">Powered by Llama 4 Scout via Groq</span></div></div>`;
       return;
     }
     chatHistory.forEach(msg => {
       const div = document.createElement('div');
       div.className = `msg ${msg.role === 'user' ? 'user' : 'ai'}`;
-      const avatar = msg.role === 'user' ? 'U' : 'AI';
-      div.innerHTML = `
-        <div class="msg-avatar">${avatar}</div>
-        <div class="msg-bubble">${escapeHtml(msg.content).replace(/\n/g, '<br>')}</div>`;
+      div.innerHTML = `<div class="msg-avatar">${msg.role==='user'?'U':'AI'}</div>
+        <div class="msg-bubble">${escapeHtml(msg.content).replace(/\n/g,'<br>')}</div>`;
       container.appendChild(div);
     });
     container.scrollTop = container.scrollHeight;
   }
 
   function addTypingIndicator() {
-    const container = document.getElementById('chatMessages');
-    const div = document.createElement('div');
-    div.className = 'msg ai';
-    div.id = 'typingMsg';
-    div.innerHTML = `<div class="msg-avatar">AI</div>
-      <div class="msg-bubble"><div class="typing-indicator">
-        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-      </div></div>`;
-    container.appendChild(div);
-    container.scrollTop = container.scrollHeight;
+    const c = document.getElementById('chatMessages');
+    const d = document.createElement('div');
+    d.className = 'msg ai'; d.id = 'typingMsg';
+    d.innerHTML = `<div class="msg-avatar">AI</div><div class="msg-bubble"><div class="typing-indicator"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
+    c.appendChild(d);
+    c.scrollTop = c.scrollHeight;
   }
+  function removeTypingIndicator() { document.getElementById('typingMsg')?.remove(); }
+  function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  function removeTypingIndicator() {
-    document.getElementById('typingMsg')?.remove();
-  }
-
-  function escapeHtml(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  // ─── Clear ────────────────────────────────────────────
   function clearAll() {
-    documentText = '';
-    chatHistory  = [];
+    documentText = ''; chatHistory = [];
     document.getElementById('textInput').value = '';
     document.getElementById('fileInput').value = '';
     document.querySelector('.upload-text').textContent = 'Drop PDF here or click to browse';
@@ -773,11 +547,9 @@
     renderChat();
   }
 
-  // ─── Toast ────────────────────────────────────────────
   function showToast(msg) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
+    t.textContent = msg; t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3500);
   }
 
