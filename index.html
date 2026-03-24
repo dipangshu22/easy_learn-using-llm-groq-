@@ -803,7 +803,6 @@
     <div class="footer-left">
       <div class="footer-logo">Doc<span>Mind</span></div>
       <div class="footer-tagline">AI-powered document intelligence</div>
-      <div> <span class="dev-name">note:supports single language</span></div></div>
     </div>
     <div class="footer-center">
       <div class="footer-dev">Built by <span class="dev-name">Dipangshu Borah</span></div>
@@ -941,6 +940,7 @@
     try {
       const systemPrompt = `You are a precise document assistant. Answer questions strictly based on the provided document content. If the answer is not found in the document, say so clearly. Be concise and accurate.\n\n--- DOCUMENT CONTENT ---\n${documentText.slice(0, 28000)}\n--- END DOCUMENT ---`;
 
+      // Build messages: inject system prompt as first user turn context
       const messages = [
         { role: 'user', content: systemPrompt + '\n\nReady. Ask me your questions.' },
         { role: 'assistant', content: 'Understood. I am ready to answer questions based solely on the document provided.' },
@@ -1427,7 +1427,7 @@ Return only the JSON object, no markdown.`;
     const resultsEl = document.getElementById('quizResults');
     resultsEl.style.display = 'none';
     document.getElementById('quizActive').style.display = 'flex';
-    
+    // Scroll to top of review
     document.getElementById('quizScroll').scrollTop = 0;
   }
 
@@ -1445,6 +1445,7 @@ Return only the JSON object, no markdown.`;
     document.getElementById('qpWrong').textContent   = quizWrong;
   }
 
+  // ─── Generating Bar ───────────────────────────────────────
   function appendGeneratingBar(text, afterId) {
     const bar = document.createElement('div');
     bar.className = 'generating-bar'; bar.id = 'genBar';
@@ -1460,7 +1461,7 @@ Return only the JSON object, no markdown.`;
   }
   function removeGeneratingBar(afterId) { document.getElementById('genBar')?.remove(); }
 
-  
+  // ─── Anthropic API Call (via local proxy) ────────────────
   async function callAnthropicAPI(userMessage) {
     let res, data;
     try {
