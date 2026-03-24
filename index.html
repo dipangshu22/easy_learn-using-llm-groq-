@@ -905,89 +905,57 @@
   function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,140)+'px'; }
 
   async function sendMessage() {
-    async function sendMessage() {
-  if (isLoading) return;
-  if (!documentText) { showToast('Please load a document first.'); return; }
-
-  const input = document.getElementById('chatInput');
-  const question = input.value.trim();
-  if (!question) return;
-
-  input.value = '';
-  input.style.height = 'auto';
-
-  isLoading = true;
-  document.getElementById('sendBtn').disabled = true;
-
-  chatHistory.push({ role: 'user', content: question });
-  renderChat();
-  addTypingIndicator();
-
-  try {
-    const systemPrompt = `You are a precise document assistant. Answer questions strictly based on the provided document content. If the answer is not found in the document, say so clearly. Be concise and accurate.\n\n--- DOCUMENT CONTENT ---\n${documentText.slice(0, 28000)}\n--- END DOCUMENT ---`;
-
-    const messages = [
-      { role: 'user', content: systemPrompt + '\n\nReady. Ask me your questions.' },
-      { role: 'assistant', content: 'Understood. I am ready to answer questions based solely on the document provided.' },
-      ...chatHistory.slice(-8)
-    ];
-
-    let chatRes, chatData;
-
-    try {
-      chatRes = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages })
-      });
-    } catch (netErr) {
-      throw new Error('Cannot reach proxy server — is node server.js running?');
-    }
-
-    removeTypingIndicator();
-
-    try {
-      chatData = await chatRes.json();
-    } catch (e) {
-      throw new Error('Server returned non-JSON (status ' + chatRes.status + ')');
-    }
-
-    console.log('[DocMind Chat FULL]', chatData);
-
-    if (!chatRes.ok) {
-      throw new Error(chatData?.error?.message || chatData?.error || 'API error ' + chatRes.status);
-    }
-
-    // ✅ FIXED RESPONSE HANDLING
-    let reply = '';
-
-    if (chatData?.content && Array.isArray(chatData.content)) {
-      // Anthropic format
-      reply = chatData.content
-        .map(b => b.type === 'text' ? b.text : '')
-        .join('');
-    } else if (chatData?.choices) {
-      // OpenAI / Groq format
-      reply = chatData.choices[0]?.message?.content || '';
-    } else {
-      throw new Error('Unknown response format: ' + JSON.stringify(chatData).slice(0, 200));
-    }
-
-    chatHistory.push({ role: 'assistant', content: reply });
+    if (isLoading) return;
+    if (!documentText) { showToast('Please load a document first.'); return; }
+    const input    = document.getElementById('chatInput');
+    const question = input.value.trim();
+    if (!question) return;
+    input.value = ''; input.style.height = 'auto';
+    isLoading = true;
+    document.getElementById('sendBtn').disabled = true;
+    chatHistory.push({ role: 'user', content: question });
     renderChat();
+    addTypingIndicator();
+    try {
+      const systemPrompt = `You are a precise document assistant. Answer questions strictly based on the provided document content. If the answer is not found in the document, say so clearly. Be concise and accurate.\n\n--- DOCUMENT CONTENT ---\n${documentText.slice(0, 28000)}\n--- END DOCUMENT ---`;
 
-  } catch (err) {
-    removeTypingIndicator();
-    showToast('Error: ' + err.message);
-    chatHistory.pop();
-    renderChat();
-  } finally {
-    isLoading = false;
-    document.getElementById('sendBtn').disabled = false;
-  }
-}
+      // Build messages: inject system prompt as first user turn context
+      const messages = [
+        { role: 'user', content: systemPrompt + '\n\nReady. Ask me your questions.' },
+        { role: 'assistant', content: 'Understood. I am ready to answer questions based solely on the document provided.' },
+        ...chatHistory.slice(-8)
+      ];
 
-
+      let chatRes, chatData;
+      try {
+        chatRes = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages })
+        });
+      } catch (netErr) {
+        throw new Error('Cannot reach proxy server — is node server.js running?');
+      }
+      removeTypingIndicator();
+      try { chatData = await chatRes.json(); } catch(e) {
+        throw new Error('Server returned non-JSON (status ' + chatRes.status + ')');
+      }
+      console.log('[DocMind Chat]', chatRes.status, JSON.stringify(chatData).slice(0, 300));
+      if (!chatRes.ok) throw new Error(chatData?.error?.message || chatData?.error || 'API error ' + chatRes.status);
+      if (!chatData || !Array.isArray(chatData.content)) {
+        throw new Error('Unexpected response: ' + JSON.stringify(chatData).slice(0, 200));
+      }
+      const reply = chatData.content.map(b => b.type === 'text' ? b.text : '').join('');
+      chatHistory.push({ role: 'assistant', content: reply });
+      renderChat();
+    } catch(err) {
+      removeTypingIndicator();
+      showToast('Error: ' + err.message);
+      chatHistory.pop(); renderChat();
+    } finally {
+      isLoading = false;
+      document.getElementById('sendBtn').disabled = false;
+    }
   }
 
   function renderChat() {
@@ -1009,42 +977,6 @@
     container.scrollTop = container.scrollHeight;
   }
 
-  async function callAnthropicAPI(userMessage) {
-  let res, data;
-
-  try {
-    res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: [{ role: 'user', content: userMessage }] })
-    });
-  } catch (networkErr) {
-    throw new Error('Cannot reach proxy server — is node server.js running?');
-  }
-
-  try {
-    data = await res.json();
-  } catch (e) {
-    throw new Error('Server returned non-JSON (status ' + res.status + ')');
-  }
-
-  console.log('[DocMind API FULL]', data);
-
-  if (!res.ok) {
-    throw new Error((data && (data.error?.message || data.error)) || 'API error ' + res.status);
-  }
-
-  // ✅ FIXED RESPONSE HANDLING
-  if (data?.content && Array.isArray(data.content)) {
-    return data.content.map(b => b.type === 'text' ? b.text : '').join('');
-  }
-
-  if (data?.choices) {
-    return data.choices[0]?.message?.content || '';
-  }
-
-  throw new Error('Unknown response format: ' + JSON.stringify(data).slice(0, 200));
-}
   function addTypingIndicator() {
     const c = document.getElementById('chatMessages');
     const d = document.createElement('div');
