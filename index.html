@@ -43,7 +43,6 @@
     overflow: hidden;
   }
 
-  /* ─── Header ─── */
   header {
     display: flex;
     align-items: center;
@@ -71,10 +70,8 @@
   .mode-pill.active { background: var(--accent); border-color: var(--accent); color: #0d0d0d; font-weight: 600; }
   .mode-pill:hover:not(.active) { border-color: var(--border-bright); color: var(--text); }
 
-  /* ─── Layout ─── */
   .main { display: flex; flex: 1; overflow: hidden; }
 
-  /* ─── Left Panel ─── */
   .panel-left {
     width: 320px;
     flex-shrink: 0;
@@ -173,7 +170,6 @@
   .load-btn:active { transform: scale(0.98); }
   .load-btn:disabled { background: var(--border); color: var(--text-dim); cursor: not-allowed; }
 
-  /* ─── Quiz Controls (left panel) ─── */
   .quiz-controls { display: none; flex-direction: column; gap: 12px; }
   .quiz-controls.visible { display: flex; }
 
@@ -213,10 +209,8 @@
   .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.5s ease; }
 
-  /* ─── Right Panel ─── */
   .panel-right { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
 
-  /* CHAT MODE */
   .view-chat { display: flex; flex-direction: column; height: 100%; }
   .chat-messages {
     flex: 1;
@@ -285,7 +279,6 @@
   .send-btn:active { transform: scale(0.93); }
   .send-btn:disabled { background: var(--border); cursor: not-allowed; }
 
-  /* ─── QUIZ MODE VIEW ─── */
   .view-quiz {
     display: none;
     flex-direction: column;
@@ -294,7 +287,6 @@
   }
   .view-quiz.active { display: flex; }
 
-  /* Quiz idle state */
   .quiz-idle {
     flex: 1;
     display: flex;
@@ -326,7 +318,6 @@
   .quiz-start-btn:active { transform: scale(0.97); }
   .quiz-start-btn:disabled { background: var(--border); color: var(--text-dim); cursor: not-allowed; }
 
-  /* Quiz active question area */
   .quiz-active {
     flex: 1;
     display: flex;
@@ -334,7 +325,6 @@
     overflow: hidden;
   }
 
-  /* Q&A scroll area */
   .quiz-scroll {
     flex: 1;
     overflow-y: auto;
@@ -346,18 +336,13 @@
     scrollbar-color: var(--border) transparent;
   }
 
-  /* Single Q block */
   .q-block {
     display: flex;
     flex-direction: column;
     gap: 14px;
     animation: fadeUp 0.4s ease;
   }
-  .q-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  .q-header { display: flex; align-items: center; gap: 10px; }
   .q-num {
     font-family: var(--font-mono);
     font-size: 0.6rem;
@@ -375,15 +360,8 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
-  .q-text {
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.75;
-    color: var(--text);
-    padding-left: 2px;
-  }
+  .q-text { font-size: 1rem; font-weight: 500; line-height: 1.75; color: var(--text); padding-left: 2px; }
 
-  /* Answer card */
   .answer-card {
     background: var(--surface2);
     border: 1px solid var(--border);
@@ -436,7 +414,6 @@
   .submit-answer-btn:hover { background: #f08d40; }
   .submit-answer-btn:disabled { background: var(--border); color: var(--text-dim); cursor: not-allowed; }
 
-  /* Feedback block */
   .feedback-block {
     padding: 14px 16px;
     border-radius: 8px;
@@ -450,12 +427,7 @@
   .feedback-block.wrong   { background: rgba(232,93,93,0.08);  border-color: var(--danger); }
   .feedback-icon { font-size: 1.1rem; flex-shrink: 0; padding-top: 2px; }
   .feedback-body { flex: 1; }
-  .feedback-verdict {
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    font-weight: 700;
-    margin-bottom: 5px;
-  }
+  .feedback-verdict { font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; margin-bottom: 5px; }
   .feedback-block.correct .feedback-verdict { color: var(--success); }
   .feedback-block.wrong   .feedback-verdict { color: var(--danger); }
   .feedback-explanation { font-size: 0.83rem; line-height: 1.7; color: var(--text-dim); }
@@ -471,7 +443,6 @@
     line-height: 1.6;
   }
 
-  /* Generating indicator */
   .generating-bar {
     display: flex;
     align-items: center;
@@ -486,7 +457,6 @@
   .gen-dot:nth-child(2){animation-delay:.15s} .gen-dot:nth-child(3){animation-delay:.3s}
   .gen-text { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-dim); }
 
-  /* Results screen */
   .quiz-results {
     flex: 1;
     display: flex;
@@ -499,67 +469,24 @@
   }
   .results-trophy { font-size: 4rem; margin-bottom: 12px; }
   .results-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
-  .results-score {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    margin: 10px 0;
-  }
+  .results-score { font-family: var(--font-display); font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1; margin: 10px 0; }
   .results-sub { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); margin-bottom: 28px; }
   .results-grid { display: flex; gap: 12px; margin-bottom: 28px; }
-  .results-stat {
-    padding: 14px 20px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    text-align: center;
-    min-width: 90px;
-  }
+  .results-stat { padding: 14px 20px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; text-align: center; min-width: 90px; }
   .results-stat-num { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; }
   .results-stat-num.c { color: var(--success); }
   .results-stat-num.w { color: var(--danger); }
   .results-stat-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; letter-spacing: 0.08em; }
-  .results-grade {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    padding: 8px 20px;
-    border-radius: 20px;
-    margin-bottom: 28px;
-  }
+  .results-grade { font-family: var(--font-mono); font-size: 0.72rem; padding: 8px 20px; border-radius: 20px; margin-bottom: 28px; }
   .results-grade.a { background: rgba(76,175,130,0.12); color: var(--success); border: 1px solid rgba(76,175,130,0.3); }
   .results-grade.b { background: rgba(232,124,50,0.12); color: var(--accent);  border: 1px solid rgba(232,124,50,0.3); }
   .results-grade.c { background: rgba(232,93,93,0.12);  color: var(--danger);  border: 1px solid rgba(232,93,93,0.3); }
   .results-actions { display: flex; gap: 10px; }
-  .btn-outline {
-    padding: 10px 22px;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
+  .btn-outline { padding: 10px 22px; background: transparent; border: 1px solid var(--border); color: var(--text-dim); font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
   .btn-outline:hover { border-color: var(--border-bright); color: var(--text); }
-  .btn-primary {
-    padding: 10px 22px;
-    background: var(--accent);
-    border: none;
-    color: #0d0d0d;
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    font-weight: 700;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
+  .btn-primary { padding: 10px 22px; background: var(--accent); border: none; color: #0d0d0d; font-family: var(--font-display); font-size: 0.78rem; font-weight: 700; border-radius: 6px; cursor: pointer; transition: background 0.2s; }
   .btn-primary:hover { background: #f08d40; }
 
-  /* Toast */
   .toast {
     position: fixed;
     bottom: 80px; left: 50%;
@@ -573,7 +500,6 @@
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  /* Footer */
   .footer {
     width: 100%;
     border-top: 1px solid var(--border);
@@ -614,7 +540,6 @@
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-  /* ─── Mobile ─── */
   @media (max-width: 768px) {
     .main { flex-direction: column; }
     .panel-left { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
@@ -646,10 +571,7 @@
 
 <div class="main">
 
-  <!-- ════ LEFT PANEL ════ -->
   <div class="panel-left">
-
-    <!-- Source section (shared) -->
     <div class="panel-section">
       <div class="section-label">Document Source</div>
       <div class="tabs">
@@ -682,7 +604,6 @@
       </div>
     </div>
 
-    <!-- Chat session section -->
     <div class="panel-section" id="chatSession">
       <div class="section-label">Session</div>
       <button class="load-btn" onclick="clearAll()"
@@ -691,7 +612,6 @@
       </button>
     </div>
 
-    <!-- Quiz config section -->
     <div class="panel-section" id="quizSession" style="display:none">
       <div class="section-label">Quiz Settings</div>
 
@@ -715,7 +635,6 @@
         <button class="load-btn" id="startQuizBtn" onclick="startQuiz()">Start Quiz →</button>
       </div>
 
-      <!-- Live progress -->
       <div class="quiz-progress-box" id="quizProgressBox">
         <div class="qp-row">
           <span class="qp-label">Question</span>
@@ -736,13 +655,10 @@
         </button>
       </div>
     </div>
-
   </div>
 
-  <!-- ════ RIGHT PANEL ════ -->
   <div class="panel-right">
 
-    <!-- CHAT VIEW -->
     <div class="view-chat" id="viewChat">
       <div class="chat-messages" id="chatMessages"></div>
       <div class="chat-input-area">
@@ -753,10 +669,7 @@
       </div>
     </div>
 
-    <!-- QUIZ VIEW -->
     <div class="view-quiz" id="viewQuiz">
-
-      <!-- Idle screen -->
       <div class="quiz-idle" id="quizIdle">
         <div class="quiz-idle-icon">🧠</div>
         <div class="quiz-idle-title">Quiz Mode</div>
@@ -770,16 +683,12 @@
         </button>
       </div>
 
-      <!-- Active Q&A scroll -->
       <div class="quiz-active" id="quizActive" style="display:none">
         <div class="quiz-scroll" id="quizScroll"></div>
       </div>
 
-      <!-- Results -->
       <div class="quiz-results" id="quizResults" style="display:none"></div>
-
     </div>
-
   </div>
 </div>
 
@@ -793,7 +702,7 @@
     </div>
     <div class="footer-center">
       <div class="footer-dev">Built by <span class="dev-name">Dipangshu Borah</span></div>
-      <div class="footer-stack">FastAPI · Groq · LLaMA · Vercel</div>
+      <div class="footer-stack">Claude · Anthropic API · PDF.js</div>
     </div>
     <div class="footer-right">
       <a href="#" class="footer-link">GitHub</a>
@@ -812,16 +721,89 @@
   let chatHistory  = [];
   let isLoading    = false;
 
-  // Quiz state
-  let quizQuestions   = [];   // [{question, category, hint}]
-  let quizAnswers     = [];   // [{userAnswer, correct, explanation, reference}]
-  let quizCurrent     = 0;    // index of next question to show
-  let quizCorrect     = 0;
-  let quizWrong       = 0;
-  let quizTotal       = 5;
-  let quizDifficulty  = 'easy';
-  let quizRunning     = false;
-  let quizGenerating  = false;
+  let quizQuestions  = [];
+  let quizAnswers    = [];
+  let quizCurrent    = 0;
+  let quizCorrect    = 0;
+  let quizWrong      = 0;
+  let quizTotal      = 5;
+  let quizDifficulty = 'easy';
+  let quizRunning    = false;
+  let quizGenerating = false;
+
+  // ─── Core API Call — Direct Anthropic ────────────────────
+  // Calls https://api.anthropic.com/v1/messages directly.
+  // No proxy, no server.js needed. API key is injected by the
+  // claude.ai artifact runtime automatically.
+  async function callAnthropicAPI(userMessage, systemPrompt) {
+    const body = {
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      messages: [{ role: 'user', content: userMessage }]
+    };
+    if (systemPrompt) body.system = systemPrompt;
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(
+        (data?.error?.message) ||
+        (typeof data?.error === 'string' ? data.error : null) ||
+        'API error ' + res.status
+      );
+    }
+
+    // Anthropic format: data.content is an array of blocks
+    if (!data || !Array.isArray(data.content)) {
+      throw new Error('Unexpected response shape: ' + JSON.stringify(data).slice(0, 200));
+    }
+
+    return data.content
+      .filter(b => b.type === 'text')
+      .map(b => b.text)
+      .join('');
+  }
+
+  // ─── Multi-turn chat (sends full history) ─────────────────
+  async function callAnthropicChat(messages, systemPrompt) {
+    const body = {
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      messages
+    };
+    if (systemPrompt) body.system = systemPrompt;
+
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(
+        (data?.error?.message) ||
+        (typeof data?.error === 'string' ? data.error : null) ||
+        'API error ' + res.status
+      );
+    }
+
+    if (!data || !Array.isArray(data.content)) {
+      throw new Error('Unexpected response shape: ' + JSON.stringify(data).slice(0, 200));
+    }
+
+    return data.content
+      .filter(b => b.type === 'text')
+      .map(b => b.text)
+      .join('');
+  }
 
   // ─── Mode Switch ──────────────────────────────────────────
   let currentMode = 'chat';
@@ -832,8 +814,8 @@
     document.getElementById('pillQuiz').classList.toggle('active', mode === 'quiz');
     document.getElementById('viewChat').style.display = mode === 'chat' ? 'flex' : 'none';
     document.getElementById('viewQuiz').classList.toggle('active', mode === 'quiz');
-    document.getElementById('chatSession').style.display  = mode === 'chat' ? 'block' : 'none';
-    document.getElementById('quizSession').style.display  = mode === 'quiz' ? 'block' : 'none';
+    document.getElementById('chatSession').style.display = mode === 'chat' ? 'block' : 'none';
+    document.getElementById('quizSession').style.display = mode === 'quiz' ? 'block' : 'none';
   }
 
   // ─── Tabs ─────────────────────────────────────────────────
@@ -910,48 +892,34 @@
     const input    = document.getElementById('chatInput');
     const question = input.value.trim();
     if (!question) return;
+
     input.value = ''; input.style.height = 'auto';
     isLoading = true;
     document.getElementById('sendBtn').disabled = true;
+
     chatHistory.push({ role: 'user', content: question });
     renderChat();
     addTypingIndicator();
+
     try {
-      const systemPrompt = `You are a precise document assistant. Answer questions strictly based on the provided document content. If the answer is not found in the document, say so clearly. Be concise and accurate.\n\n--- DOCUMENT CONTENT ---\n${documentText.slice(0, 28000)}\n--- END DOCUMENT ---`;
+      const systemPrompt =
+        `You are a precise document assistant. Answer questions strictly based on the provided document content. ` +
+        `If the answer is not found in the document, say so clearly. Be concise and accurate.\n\n` +
+        `--- DOCUMENT CONTENT ---\n${documentText.slice(0, 28000)}\n--- END DOCUMENT ---`;
 
-      // Build messages: inject system prompt as first user turn context
-      const messages = [
-        { role: 'user', content: systemPrompt + '\n\nReady. Ask me your questions.' },
-        { role: 'assistant', content: 'Understood. I am ready to answer questions based solely on the document provided.' },
-        ...chatHistory.slice(-8)
-      ];
+      // Use only the last 8 turns to stay within context limits
+      const messages = chatHistory.slice(-8);
 
-      let chatRes, chatData;
-      try {
-        chatRes = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages })
-        });
-      } catch (netErr) {
-        throw new Error('Cannot reach proxy server — is node server.js running?');
-      }
+      const reply = await callAnthropicChat(messages, systemPrompt);
+
       removeTypingIndicator();
-      try { chatData = await chatRes.json(); } catch(e) {
-        throw new Error('Server returned non-JSON (status ' + chatRes.status + ')');
-      }
-      console.log('[DocMind Chat]', chatRes.status, JSON.stringify(chatData).slice(0, 300));
-      if (!chatRes.ok) throw new Error(chatData?.error?.message || chatData?.error || 'API error ' + chatRes.status);
-      if (!chatData || !Array.isArray(chatData.content)) {
-        throw new Error('Unexpected response: ' + JSON.stringify(chatData).slice(0, 200));
-      }
-      const reply = chatData.content.map(b => b.type === 'text' ? b.text : '').join('');
       chatHistory.push({ role: 'assistant', content: reply });
       renderChat();
     } catch(err) {
       removeTypingIndicator();
       showToast('Error: ' + err.message);
-      chatHistory.pop(); renderChat();
+      chatHistory.pop();
+      renderChat();
     } finally {
       isLoading = false;
       document.getElementById('sendBtn').disabled = false;
@@ -1024,6 +992,11 @@
     document.getElementById('quizProgressBox').classList.remove('visible');
     document.getElementById('quizScroll').innerHTML = '';
 
+    const sb = document.getElementById('startQuizBtn');
+    const ib = document.getElementById('quizIdleStart');
+    if (sb) sb.disabled = false;
+    if (ib) ib.disabled = false;
+
     updateQuizProgress();
   }
 
@@ -1036,7 +1009,6 @@
     quizCurrent = 0; quizCorrect = 0; quizWrong = 0;
     quizRunning = true;
 
-    // Switch UI to active
     document.getElementById('quizIdle').style.display   = 'none';
     document.getElementById('quizResults').style.display= 'none';
     document.getElementById('quizActive').style.display = 'flex';
@@ -1057,41 +1029,32 @@
         hard:   'analytical and inferential questions requiring deep comprehension'
       }[quizDifficulty];
 
-      const prompt = `You are a quiz generator. Based on the document below, create exactly ${quizTotal} ${quizDifficulty}-difficulty questions (${diffGuide}).
-
-Return ONLY a valid JSON array, no markdown, no preamble. Each item must have exactly these keys:
-- "question": the question string
-- "category": a short topic tag (e.g. "Main Concept", "Definition", "Analysis")
-- "hint": a one-line hint if the user gets stuck (don't give the answer away)
-
-The questions should cover different parts of the document proportionally. Make questions progressively deeper as the index increases.
-
-DOCUMENT:
-${docSnippet}
-
-Return only the JSON array.`;
+      const prompt =
+        `You are a quiz generator. Based on the document below, create exactly ${quizTotal} ${quizDifficulty}-difficulty questions (${diffGuide}).\n\n` +
+        `Return ONLY a valid JSON array, no markdown, no preamble. Each item must have exactly these keys:\n` +
+        `- "question": the question string\n` +
+        `- "category": a short topic tag (e.g. "Main Concept", "Definition", "Analysis")\n` +
+        `- "hint": a one-line hint if the user gets stuck (don't give the answer away)\n\n` +
+        `Cover different parts of the document proportionally. Make questions progressively deeper as the index increases.\n\n` +
+        `DOCUMENT:\n${docSnippet}\n\nReturn only the JSON array.`;
 
       const res = await callAnthropicAPI(prompt);
       removeGeneratingBar();
 
-      // Parse JSON from response
       let raw = res.trim();
       const fence = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
       if (fence) raw = fence[1].trim();
       const start = raw.indexOf('[');
       const end   = raw.lastIndexOf(']');
-      if (start === -1 || end === -1) throw new Error('AI did not return a JSON array. Raw: ' + raw.slice(0,200));
-      try { quizQuestions = JSON.parse(raw.slice(start, end + 1)); }
-      catch(parseErr) { throw new Error('JSON parse failed: ' + parseErr.message + ' | Raw: ' + raw.slice(0,200)); }
+      if (start === -1 || end === -1) throw new Error('AI did not return a JSON array.');
+      quizQuestions = JSON.parse(raw.slice(start, end + 1));
 
       if (!Array.isArray(quizQuestions) || quizQuestions.length === 0)
-        throw new Error('No questions returned');
+        throw new Error('No questions returned.');
 
       quizTotal = quizQuestions.length;
       quizGenerating = false;
       updateQuizProgress();
-
-      // Show first question
       showQuestion(0);
 
     } catch(err) {
@@ -1100,8 +1063,6 @@ Return only the JSON array.`;
       quizRunning = false;
       showToast('Quiz error: ' + err.message);
       resetQuizUI();
-      document.getElementById('startQuizBtn').disabled = false;
-      document.getElementById('quizIdleStart').disabled = false;
     }
   }
 
@@ -1125,7 +1086,7 @@ Return only the JSON array.`;
           onkeydown="handleAnswerKey(event, ${index})"
           oninput="autoResizeTA(this)"></textarea>
         <div class="answer-footer">
-          <span class="answer-hint" id="ahint-${index}">💡 Hint: ${escapeHtml(q.hint || 'Think carefully about the document.')}</span>
+          <span class="answer-hint" id="ahint-${index}">💡 ${escapeHtml(q.hint || 'Think carefully about the document.')}</span>
           <button class="submit-answer-btn" id="asubmit-${index}" onclick="submitAnswer(${index})">
             Submit →
           </button>
@@ -1134,12 +1095,7 @@ Return only the JSON array.`;
     `;
     scroll.appendChild(block);
     scroll.scrollTop = scroll.scrollHeight;
-
-    // Focus the textarea after render
-    setTimeout(() => {
-      const ta = document.getElementById(`atxt-${index}`);
-      if (ta) ta.focus();
-    }, 100);
+    setTimeout(() => { const ta = document.getElementById(`atxt-${index}`); if (ta) ta.focus(); }, 100);
   }
 
   function handleAnswerKey(e, index) {
@@ -1164,21 +1120,17 @@ Return only the JSON array.`;
     appendGeneratingBar('Evaluating your answer…', `qblock-${index}`);
 
     try {
-      const evalPrompt = `You are a strict but fair quiz evaluator. 
-
-DOCUMENT (excerpt):
-${documentText.slice(0, 16000)}
-
-QUESTION: ${q.question}
-STUDENT ANSWER: ${userAnswer}
-
-Evaluate the answer based ONLY on the document content. Return ONLY a JSON object with exactly these keys:
-- "correct": true or false
-- "verdict": "Correct!" or "Incorrect" or "Partially Correct"
-- "explanation": 1-2 sentences explaining why the answer is right/wrong/partial, referencing the document
-- "reference": a short verbatim phrase from the document that supports the correct answer (under 20 words)
-
-Return only the JSON object, no markdown.`;
+      const evalPrompt =
+        `You are a strict but fair quiz evaluator.\n\n` +
+        `DOCUMENT (excerpt):\n${documentText.slice(0, 16000)}\n\n` +
+        `QUESTION: ${q.question}\n` +
+        `STUDENT ANSWER: ${userAnswer}\n\n` +
+        `Evaluate based ONLY on the document content. Return ONLY a JSON object with exactly these keys:\n` +
+        `- "correct": true or false\n` +
+        `- "verdict": "Correct!" or "Incorrect" or "Partially Correct"\n` +
+        `- "explanation": 1-2 sentences explaining why, referencing the document\n` +
+        `- "reference": a short phrase from the document supporting the correct answer (under 20 words)\n\n` +
+        `Return only the JSON object, no markdown.`;
 
       const res = await callAnthropicAPI(evalPrompt);
       removeGeneratingBar(`qblock-${index}`);
@@ -1188,25 +1140,22 @@ Return only the JSON object, no markdown.`;
       if (fence2) raw = fence2[1].trim();
       const objStart = raw.indexOf('{');
       const objEnd   = raw.lastIndexOf('}');
-      if (objStart === -1 || objEnd === -1) throw new Error('Evaluator did not return JSON. Raw: ' + raw.slice(0,200));
-      let parsed;
-      try { parsed = JSON.parse(raw.slice(objStart, objEnd + 1)); }
-      catch(e) { throw new Error('Eval JSON parse failed: ' + e.message); }
+      if (objStart === -1 || objEnd === -1) throw new Error('Evaluator did not return JSON.');
+      const parsed = JSON.parse(raw.slice(objStart, objEnd + 1));
 
       const isCorrect = parsed.correct === true ||
-        (typeof parsed.verdict === 'string' && parsed.verdict.toLowerCase().includes('correct') && !parsed.verdict.toLowerCase().includes('incorrect'));
+        (typeof parsed.verdict === 'string' &&
+         parsed.verdict.toLowerCase().includes('correct') &&
+         !parsed.verdict.toLowerCase().includes('incorrect'));
 
-      // Update score
       if (isCorrect) { quizCorrect++; } else { quizWrong++; }
       quizAnswers[index] = { userAnswer, correct: isCorrect, ...parsed };
       quizCurrent = index + 1;
       updateQuizProgress();
 
-      // Style the answer card
       const card = document.getElementById(`acard-${index}`);
       card.classList.add(isCorrect ? 'correct-card' : 'wrong-card');
 
-      // Append feedback
       const block = document.getElementById(`qblock-${index}`);
       const fb = document.createElement('div');
       fb.className = `feedback-block ${isCorrect ? 'correct' : 'wrong'}`;
@@ -1223,11 +1172,9 @@ Return only the JSON object, no markdown.`;
       const scroll = document.getElementById('quizScroll');
       scroll.scrollTop = scroll.scrollHeight;
 
-      // Small delay, then next question
       setTimeout(() => {
-        if (quizCurrent >= quizTotal) {
-          showResults();
-        } else {
+        if (quizCurrent >= quizTotal) { showResults(); }
+        else {
           showQuestion(quizCurrent);
           setTimeout(() => { scroll.scrollTop = scroll.scrollHeight; }, 200);
         }
@@ -1252,7 +1199,6 @@ Return only the JSON object, no markdown.`;
     const grade = pct >= 80 ? { cls: 'a', text: '🏆 Excellent — Top of the class!' }
                 : pct >= 60 ? { cls: 'b', text: '👍 Good effort — Keep studying!' }
                 :             { cls: 'c', text: '📚 Needs review — Try again!' };
-
     const trophy = pct >= 80 ? '🏆' : pct >= 60 ? '🎯' : '📖';
 
     resultsEl.innerHTML = `
@@ -1262,18 +1208,9 @@ Return only the JSON object, no markdown.`;
       <div class="results-sub">${quizCorrect} out of ${quizTotal} questions correct</div>
       <div class="results-grade ${grade.cls}">${grade.text}</div>
       <div class="results-grid">
-        <div class="results-stat">
-          <div class="results-stat-num c">${quizCorrect}</div>
-          <div class="results-stat-label">Correct</div>
-        </div>
-        <div class="results-stat">
-          <div class="results-stat-num w">${quizWrong}</div>
-          <div class="results-stat-label">Wrong</div>
-        </div>
-        <div class="results-stat">
-          <div class="results-stat-num" style="color:var(--accent)">${quizTotal}</div>
-          <div class="results-stat-label">Total</div>
-        </div>
+        <div class="results-stat"><div class="results-stat-num c">${quizCorrect}</div><div class="results-stat-label">Correct</div></div>
+        <div class="results-stat"><div class="results-stat-num w">${quizWrong}</div><div class="results-stat-label">Wrong</div></div>
+        <div class="results-stat"><div class="results-stat-num" style="color:var(--accent)">${quizTotal}</div><div class="results-stat-label">Total</div></div>
       </div>
       <div class="results-actions">
         <button class="btn-outline" onclick="reviewQuiz()">Review Answers</button>
@@ -1283,17 +1220,12 @@ Return only the JSON object, no markdown.`;
   }
 
   function reviewQuiz() {
-    const resultsEl = document.getElementById('quizResults');
-    resultsEl.style.display = 'none';
+    document.getElementById('quizResults').style.display = 'none';
     document.getElementById('quizActive').style.display = 'flex';
-    // Scroll to top of review
     document.getElementById('quizScroll').scrollTop = 0;
   }
 
-  function endQuizEarly() {
-    if (!quizRunning) return;
-    showResults();
-  }
+  function endQuizEarly() { if (quizRunning) showResults(); }
 
   function updateQuizProgress() {
     const total = quizTotal || 0;
@@ -1311,39 +1243,14 @@ Return only the JSON object, no markdown.`;
     bar.innerHTML = `<div class="gen-dots"><div class="gen-dot"></div><div class="gen-dot"></div><div class="gen-dot"></div></div><span class="gen-text">${text}</span>`;
     if (afterId) {
       const ref = document.getElementById(afterId);
-      if (ref) { ref.parentNode.insertBefore(bar, ref.nextSibling); }
-      else { document.getElementById('quizScroll').appendChild(bar); }
+      if (ref) ref.parentNode.insertBefore(bar, ref.nextSibling);
+      else document.getElementById('quizScroll').appendChild(bar);
     } else {
       document.getElementById('quizScroll').appendChild(bar);
     }
     document.getElementById('quizScroll').scrollTop = document.getElementById('quizScroll').scrollHeight;
   }
-  function removeGeneratingBar(afterId) { document.getElementById('genBar')?.remove(); }
-
-  // ─── Anthropic API Call (via local proxy) ────────────────
-  async function callAnthropicAPI(userMessage) {
-    let res, data;
-    try {
-      res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: [{ role: 'user', content: userMessage }] })
-      });
-    } catch (networkErr) {
-      throw new Error('Cannot reach proxy server — is node server.js running?');
-    }
-    try { data = await res.json(); } catch (e) {
-      throw new Error('Server returned non-JSON (status ' + res.status + ')');
-    }
-    console.log('[DocMind API]', res.status, JSON.stringify(data).slice(0, 300));
-    if (!res.ok) {
-      throw new Error((data && (data.error?.message || data.error)) || 'API error ' + res.status);
-    }
-    if (!data || !Array.isArray(data.content)) {
-      throw new Error('Unexpected response shape: ' + JSON.stringify(data).slice(0, 200));
-    }
-    return data.content.map(b => b.type === 'text' ? b.text : '').join('');
-  }
+  function removeGeneratingBar() { document.getElementById('genBar')?.remove(); }
 
   // ─── Misc ─────────────────────────────────────────────────
   function showToast(msg) {
