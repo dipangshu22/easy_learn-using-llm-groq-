@@ -926,15 +926,26 @@
         ...chatHistory.slice(-8)
       ];
 
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages })
-      });
+      let chatRes, chatData;
+      try {
+        chatRes = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages })
+        });
+      } catch (netErr) {
+        throw new Error('Cannot reach proxy server — is node server.js running?');
+      }
       removeTypingIndicator();
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error?.message || 'API error');
-      const reply = data.content.map(b => b.type === 'text' ? b.text : '').join('');
+      try { chatData = await chatRes.json(); } catch(e) {
+        throw new Error('Server returned non-JSON (status ' + chatRes.status + ')');
+      }
+      console.log('[DocMind Chat]', chatRes.status, JSON.stringify(chatData).slice(0, 300));
+      if (!chatRes.ok) throw new Error(chatData?.error?.message || chatData?.error || 'API error ' + chatRes.status);
+      if (!chatData || !Array.isArray(chatData.content)) {
+        throw new Error('Unexpected response: ' + JSON.stringify(chatData).slice(0, 200));
+      }
+      const reply = chatData.content.map(b => b.type === 'text' ? b.text : '').join('');
       chatHistory.push({ role: 'assistant', content: reply });
       renderChat();
     } catch(err) {
@@ -1069,8 +1080,9 @@ Return only the JSON array.`;
       if (fence) raw = fence[1].trim();
       const start = raw.indexOf('[');
       const end   = raw.lastIndexOf(']');
-      if (start === -1 || end === -1) throw new Error('Could not parse questions JSON');
-      quizQuestions = JSON.parse(raw.slice(start, end + 1));
+      if (start === -1 || end === -1) throw new Error('AI did not return a JSON array. Raw: ' + raw.slice(0,200));
+      try { quizQuestions = JSON.parse(raw.slice(start, end + 1)); }
+      catch(parseErr) { throw new Error('JSON parse failed: ' + parseErr.message + ' | Raw: ' + raw.slice(0,200)); }
 
       if (!Array.isArray(quizQuestions) || quizQuestions.length === 0)
         throw new Error('No questions returned');
@@ -1172,9 +1184,14 @@ Return only the JSON object, no markdown.`;
       removeGeneratingBar(`qblock-${index}`);
 
       let raw = res.trim();
-      const fence = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-      if (fence) raw = fence[1].trim();
-      const parsed = JSON.parse(raw);
+      const fence2 = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
+      if (fence2) raw = fence2[1].trim();
+      const objStart = raw.indexOf('{');
+      const objEnd   = raw.lastIndexOf('}');
+      if (objStart === -1 || objEnd === -1) throw new Error('Evaluator did not return JSON. Raw: ' + raw.slice(0,200));
+      let parsed;
+      try { parsed = JSON.parse(raw.slice(objStart, objEnd + 1)); }
+      catch(e) { throw new Error('Eval JSON parse failed: ' + e.message); }
 
       const isCorrect = parsed.correct === true ||
         (typeof parsed.verdict === 'string' && parsed.verdict.toLowerCase().includes('correct') && !parsed.verdict.toLowerCase().includes('incorrect'));
@@ -1305,18 +1322,26 @@ Return only the JSON object, no markdown.`;
 
   // ─── Anthropic API Call (via local proxy) ────────────────
   async function callAnthropicAPI(userMessage) {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        messages: [{ role: 'user', content: userMessage }]
-      })
-    });
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.error?.message || `API error ${res.status}`);
+    let res, data;
+    try {
+      res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: [{ role: 'user', content: userMessage }] })
+      });
+    } catch (networkErr) {
+      throw new Error('Cannot reach proxy server — is node server.js running?');
     }
-    const data = await res.json();
+    try { data = await res.json(); } catch (e) {
+      throw new Error('Server returned non-JSON (status ' + res.status + ')');
+    }
+    console.log('[DocMind API]', res.status, JSON.stringify(data).slice(0, 300));
+    if (!res.ok) {
+      throw new Error((data && (data.error?.message || data.error)) || 'API error ' + res.status);
+    }
+    if (!data || !Array.isArray(data.content)) {
+      throw new Error('Unexpected response shape: ' + JSON.stringify(data).slice(0, 200));
+    }
     return data.content.map(b => b.type === 'text' ? b.text : '').join('');
   }
 
