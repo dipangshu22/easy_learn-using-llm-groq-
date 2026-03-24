@@ -942,19 +942,10 @@
       }
       console.log('[DocMind Chat]', chatRes.status, JSON.stringify(chatData).slice(0, 300));
       if (!chatRes.ok) throw new Error(chatData?.error?.message || chatData?.error || 'API error ' + chatRes.status);
-     let reply = '';
-
-if (chatData?.content && Array.isArray(chatData.content)) {
-  // Anthropic-style response
-  reply = chatData.content
-    .map(b => b.type === 'text' ? b.text : '')
-    .join('');
-} else if (chatData?.choices) {
-  // OpenAI / Groq-style response
-  reply = chatData.choices[0]?.message?.content || '';
-} else {
-  throw new Error('Unknown response format: ' + JSON.stringify(chatData).slice(0, 200));
-}
+      if (!chatData || !Array.isArray(chatData.content)) {
+        throw new Error('Unexpected response: ' + JSON.stringify(chatData).slice(0, 200));
+      }
+      const reply = chatData.content.map(b => b.type === 'text' ? b.text : '').join('');
       chatHistory.push({ role: 'assistant', content: reply });
       renderChat();
     } catch(err) {
@@ -1348,16 +1339,11 @@ Return only the JSON object, no markdown.`;
     if (!res.ok) {
       throw new Error((data && (data.error?.message || data.error)) || 'API error ' + res.status);
     }
-    // Handle both response formats
-if (data?.content && Array.isArray(data.content)) {
-  return data.content.map(b => b.type === 'text' ? b.text : '').join('');
-}
-
-if (data?.choices) {
-  return data.choices[0]?.message?.content || '';
-}
-
-throw new Error('Unknown response format: ' + JSON.stringify(data).slice(0, 200));
+    if (!data || !Array.isArray(data.content)) {
+      throw new Error('Unexpected response shape: ' + JSON.stringify(data).slice(0, 200));
+    }
+    return data.content.map(b => b.type === 'text' ? b.text : '').join('');
+  }
 
   // ─── Misc ─────────────────────────────────────────────────
   function showToast(msg) {
