@@ -52,7 +52,10 @@ export default async function handler(req, res) {
       });
     }
 
-    return res.status(200).json(data);
+    const text = data.choices?.[0]?.message?.content ?? '';
+return res.status(200).json({
+  content: [{ type: 'text', text }]
+});
 
   } catch (err) {
     return res.status(500).json({
